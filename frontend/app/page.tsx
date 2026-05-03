@@ -61,5 +61,32 @@ export default function Home() {
         </div>
       </main>
     </div>
+'use client'
+import { useEffect, useState } from 'react'
+
+export default function Home() {
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/items/')
+      .then(res => res.json())
+      .then(data => setItems(data))
+      .catch(err => console.error(err))
+  }, [])
+
+  return (
+    <div style={{ padding: '2rem' }}>
+      <h1>Inventory System</h1>
+      <ul>
+        {items.map((item: any) => (
+          <li key={item.id}>
+            {item.name} - {item.quantity} units (${item.price})
+          </li>
+        ))}
+      </ul>
+      {items.length === 0 && <p>No items found. Add some via API!</p>}
+    </div>
+  )
+}
   );
 }
