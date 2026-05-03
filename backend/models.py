@@ -1,14 +1,28 @@
+from sqlalchemy import Column, Integer, String, Float
+from .database import Base
 from pydantic import BaseModel
 from typing import Optional
 
-# โครงสร้างข้อมูลสำหรับรับเข้า (สร้างใหม่)
+# --- SQLAlchemy Model (สำหรับสร้างตารางใน DB) ---
+class ItemDB(Base):
+    __tablename__ = "items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    description = Column(String)
+    price = Column(Float)
+    quantity = Column(Integer)
+
+# --- Pydantic Schemas (สำหรับรับ-ส่งข้อมูล API) ---
 class ItemBase(BaseModel):
     name: str
     description: Optional[str] = None
     price: float
     quantity: int
 
-# โครงสร้างข้อมูลสำหรับส่งออก (มี ID)
+class ItemCreate(ItemBase):
+    pass
+
 class Item(ItemBase):
     id: int
 
