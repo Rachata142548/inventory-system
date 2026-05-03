@@ -11,6 +11,11 @@ RUN npm install
 # คัดลอกไฟล์โปรเจกต์ทั้งหมด
 COPY . .
 
+# --- เพิ่มส่วนนี้เพื่อให้ Docker รับค่าจาก Render ได้ ---
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+# --------------------------------------------------
+
 # Build โปรเจกต์
 RUN npm run build
 
