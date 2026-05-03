@@ -1,5 +1,5 @@
 # ใช้ Node.js เวอร์ชั่นล่าสุด
-FROM node:18-alpine
+FROM node:20-alpine
 
 # กำหนด Working Directory
 WORKDIR /app
