@@ -2,8 +2,8 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
-from .database import engine, get_db, Base
-from .models import ItemDB, ItemCreate, Item
+from database import engine, get_db, Base
+from models import ItemDB, ItemCreate, Item
 
 # สร้างตารางใน Database (ถ้ายังไม่มี)
 Base.metadata.create_all(bind=engine)
