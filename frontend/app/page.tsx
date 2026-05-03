@@ -14,8 +14,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // ฟังก์ชันดึงข้อมูลจาก FastAPI Backend
-    fetch('http://localhost:8000/items/')
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+      fetch(`${apiUrl}/items/`)
       .then((res) => {
         if (!res.ok) throw new Error('Network response was not ok');
         return res.json();
